@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Create a new task</title>
+<meta charset="utf-8" />
+<title>Edit Task</title>
 </head>
 <body>
 	<div align="center">
-		<h1>Create a new task</h1>
-		<br>
-		<form th:action="@{save-task}" method="post"
-			th:object="${newTask}">
-			<table border="0" cellpadding="10">
+		<h1>Edit Task</h1>
+		<br />
+		<form th:action="@{/update-task}" th:object="${task}" method="post">
+			<table border="0">
+				<tr>
+					<td>Task ID:</td>
+					<td><input type="number" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>
 				<tr>
 					<td>Task Name:</td>
-					<td><input type="text" th:field="*{taskName}"  value="Joshn"/></td>
+					<td><input type="text" th:field="*{taskName}" /></td>
 				</tr>
 				<tr>
 					<td>Start Date:</td>
@@ -22,17 +28,14 @@
 					<td>End Date:</td>
 					<td><input type="date" th:field="*{endDate}" /></td>
 				</tr>
-				
 				<tr>
 					<td>Description:</td>
-					<td><textarea rows="4" cols="50" maxlength="255" th:field="*{description}"></textarea></td>
+					<td><textarea rows="4" cols="50" th:field="*{description}"></textarea></td>
 				</tr>
-
 				<tr>
 					<td>Email:</td>
 					<td><input type="email" th:field="*{email}" /></td>
 				</tr>
-
 				<tr>
 					<td>Severity:</td>
 					<td><select th:field="*{severity}">
@@ -41,14 +44,13 @@
 							<option value="Low">Low</option>
 					</select></td>
 				</tr>
-
 				<tr>
 					<td>Owner:</td>
 					<td><input type="text" th:field="*{owner}" /></td>
 				</tr>
 
 				<tr>
-					<td colspan="2"><button type="submit">Create task</button></td>
+					<td colspan="2"><button type="submit">Save</button></td>
 				</tr>
 			</table>
 		</form>
