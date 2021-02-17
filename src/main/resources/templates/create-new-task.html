@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create a new task</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Create a new task</h1>
+		<br>
+		<form th:action="@{save-task}" method="post"
+			th:object="${newTask}">
+			<table border="0" cellpadding="10">
+				<tr>
+					<td>Task Name:</td>
+					<td><input type="text" th:field="*{taskName}"  value="Joshn"/></td>
+				</tr>
+				<tr>
+					<td>Start Date:</td>
+					<td><input type="date" th:field="*{startDate}" /></td>
+				</tr>
+				<tr>
+					<td>End Date:</td>
+					<td><input type="date" th:field="*{endDate}" /></td>
+				</tr>
+				
+				<tr>
+					<td>Description:</td>
+					<td><textarea rows="4" cols="50" th:field="*{description}"></textarea></td>
+				</tr>
+
+				<tr>
+					<td>Email:</td>
+					<td><input type="email" th:field="*{email}" /></td>
+				</tr>
+
+				<tr>
+					<td>Severity:</td>
+					<td><select th:field="*{severity}">
+							<option value="High">High</option>
+							<option value="Medium">Medium</option>
+							<option value="Low">Low</option>
+					</select></td>
+				</tr>
+
+				<tr>
+					<td>Owner:</td>
+					<td><input type="text" th:field="*{owner}" /></td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><button type="submit">Create task</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
