@@ -20,6 +20,10 @@ public class TaskService {
 		taskRepo.save(newTask);
 	}
 
+	public Task getSingleTask(long id) {
+		return taskRepo.findById(id).get();
+	}
+
 	public List<Task> getAllTasks() {
 		return taskRepo.findAll();
 	}
@@ -35,8 +39,8 @@ public class TaskService {
 							updatedTask.getOwner());
 	}
 	
-	public Task getSingleTask(long id) {
-		return taskRepo.findById(id).get();
+	public void deleteTask(long id) {
+		taskRepo.deleteById(id);
 	}
-
+	
 }

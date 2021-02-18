@@ -16,10 +16,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@ToString
 @Entity
 @Table
 public class Task {

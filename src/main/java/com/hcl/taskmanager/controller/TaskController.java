@@ -1,18 +1,16 @@
 package com.hcl.taskmanager.controller;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hcl.taskmanager.entity.Task;
@@ -41,7 +39,7 @@ public class TaskController {
 	}
 	
 	@PostMapping("/save-task")
-	public String saveNewTask(@ModelAttribute("newTask") Task newTask) throws ParseException {
+	public String saveNewTask(Task newTask) {
 		taskService.addTask(newTask);
 		
 		return "redirect:/";
@@ -55,14 +53,18 @@ public class TaskController {
 		
 		return mv;
 	}
-	
+
 	@PostMapping("/update-task")
-	public String updateTask(@ModelAttribute(name = "task") Task updatedTask) {
-		taskService.updateTask(updatedTask.getId(), updatedTask);;
+	public String updateTask(Task updatedTask) {
+		taskService.updateTask(updatedTask.getId(), updatedTask);
 		
 		return "redirect:/";
 	}
 	
-	
-	
+	@RequestMapping(value = "/delete-task/{id}", method = RequestMethod.DELETE)
+	public String deleteTask(@PathVariable(name = "id") long id) {
+		taskService.deleteTask(id);
+		
+		return "redirect:/";
+	}
 }

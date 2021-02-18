@@ -8,11 +8,8 @@ import java.text.SimpleDateFormat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
 
 import com.hcl.taskmanager.entity.Task;
-import com.hcl.taskmanager.repository.TaskRepository;
 import com.hcl.taskmanager.service.TaskService;
 
 @SpringBootTest

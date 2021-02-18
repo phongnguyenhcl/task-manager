@@ -27,7 +27,7 @@ public class TaskManagerApplication implements CommandLineRunner{
 		task.setStartDate(new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-15"));
 		task.setEndDate(new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-22"));
 		task.setDescription("Task 1 Description");
-		task.setEmail("Task 1 Email");
+		task.setEmail("pnguyen1710@gmail.com");
 		task.setSeverity("Task 1 High");
 		task.setOwner("Teo");
 		
@@ -36,7 +36,7 @@ public class TaskManagerApplication implements CommandLineRunner{
 		task2.setStartDate(new SimpleDateFormat("yyyy-MM-dd").parse("2020-12-01"));
 		task2.setEndDate(new SimpleDateFormat("yyyy-MM-dd").parse("2020-12-07"));
 		task2.setDescription("Task 2 Description");
-		task2.setEmail("Task 2 Email");
+		task2.setEmail("pnguyen1710@gmail.com");
 		task2.setSeverity("Task 2 Low");
 		task2.setOwner("Phong");
 		

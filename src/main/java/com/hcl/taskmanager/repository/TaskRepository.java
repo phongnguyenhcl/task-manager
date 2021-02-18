@@ -31,5 +31,4 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 					@Param(value = "email") String email,
 					@Param(value = "severity") String severity,
 					@Param(value = "owner") String owner);
-
 }
