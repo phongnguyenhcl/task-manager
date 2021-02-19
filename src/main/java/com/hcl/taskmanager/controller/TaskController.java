@@ -5,12 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hcl.taskmanager.entity.Task;
@@ -61,7 +59,7 @@ public class TaskController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/delete-task/{id}", method = RequestMethod.DELETE)
+	@RequestMapping("/delete-task/{id}")
 	public String deleteTask(@PathVariable(name = "id") long id) {
 		taskService.deleteTask(id);
 		
