@@ -54,7 +54,7 @@ public class TaskController {
 
 	@PostMapping("/update-task")
 	public String updateTask(Task updatedTask) {
-		taskService.updateTask(updatedTask.getId(), updatedTask);
+		taskService.updateTask(updatedTask);
 		
 		return "redirect:/";
 	}
@@ -65,4 +65,5 @@ public class TaskController {
 		
 		return "redirect:/";
 	}
+	
 }

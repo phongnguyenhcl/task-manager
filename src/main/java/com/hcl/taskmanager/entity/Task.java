@@ -21,7 +21,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ToString
 @Entity
 @Table
 public class Task {
