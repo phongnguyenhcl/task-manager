@@ -23,24 +23,17 @@ public class TaskService {
 	public Task getSingleTask(long id) {
 		return taskRepo.findById(id).get();
 	}
-
+	
 	public List<Task> getAllTasks() {
 		return taskRepo.findAll();
 	}
 
-	public void updateTask(long id, Task updatedTask) {
-		taskRepo.updateTask(id, 
-							updatedTask.getTaskName(), 
-							updatedTask.getStartDate(), 
-							updatedTask.getEndDate(),
-							updatedTask.getDescription(),
-							updatedTask.getEmail(),
-							updatedTask.getSeverity(),
-							updatedTask.getOwner());
+	public void updateTask(Task updatedTask) {
+		taskRepo.save(updatedTask);
 	}
-	
+
 	public void deleteTask(long id) {
 		taskRepo.deleteById(id);
 	}
-	
+
 }
