@@ -2,7 +2,6 @@ package com.hcl.taskmanager.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hcl.taskmanager.entity.Task;
+import com.hcl.taskmanager.exception.TaskNotFoundException;
 import com.hcl.taskmanager.service.TaskService;
 
 @Controller
 public class TaskController {
 	
-	@Autowired
-	TaskService taskService;
+	private TaskService taskService;
+
+	public TaskController(TaskService taskService) {
+		this.taskService = taskService;
+	}
 	
 	@GetMapping("/")
 	public String viewHome(Model model) {
@@ -46,7 +49,7 @@ public class TaskController {
 	@RequestMapping("/edit-task/{id}")
 	public ModelAndView editTaskForm(@PathVariable(name = "id") long id) {
 		ModelAndView mv = new ModelAndView("edit-task");
-		Task task = taskService.getSingleTask(id);
+		Task task = taskService.getSingleTask(id).orElseThrow(() -> new TaskNotFoundException(id));
 		mv.addObject("task", task);
 		
 		return mv;
@@ -61,6 +64,10 @@ public class TaskController {
 	
 	@RequestMapping("/delete-task/{id}")
 	public String deleteTask(@PathVariable(name = "id") long id) {
+		if (!taskService.doesTaskExist(id)) {
+			throw new TaskNotFoundException(id);
+		}
+	
 		taskService.deleteTask(id);
 		
 		return "redirect:/";

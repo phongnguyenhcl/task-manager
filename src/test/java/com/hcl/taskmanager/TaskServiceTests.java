@@ -32,7 +32,7 @@ public class TaskServiceTests {
 		task.setSeverity("High Severity");
 		task.setOwner("Teo");
 		
-		taskService.updateTask(updatedTaskId, task);
+		taskService.updateTask(task);
 		
 		Task foundTask = taskService.getSingleTask(updatedTaskId);
 		

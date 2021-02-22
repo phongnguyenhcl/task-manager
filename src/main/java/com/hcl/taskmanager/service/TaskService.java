@@ -1,8 +1,8 @@
 package com.hcl.taskmanager.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,15 +13,18 @@ import com.hcl.taskmanager.repository.TaskRepository;
 @Transactional
 public class TaskService {
 
-	@Autowired
-	TaskRepository taskRepo;
+	private TaskRepository taskRepo;
+
+	public TaskService(TaskRepository taskRepo) {
+		this.taskRepo = taskRepo;
+	}
 
 	public void addTask(Task newTask) {
 		taskRepo.save(newTask);
 	}
 
-	public Task getSingleTask(long id) {
-		return taskRepo.findById(id).get();
+	public Optional<Task> getSingleTask(long id) {
+		return taskRepo.findById(id);
 	}
 	
 	public List<Task> getAllTasks() {
@@ -34,7 +37,10 @@ public class TaskService {
 
 	public void deleteTask(long id) {
 		taskRepo.deleteById(id);
-		
+	}
+	
+	public boolean doesTaskExist(long id) {
+		return taskRepo.existsById(id);
 	}
 
 }
