@@ -81,7 +81,7 @@ public class TaskController {
 	public String saveNewTask(Task newTask) {
 		taskService.addTask(newTask);
 		
-		return "redirect: /tasks";
+		return "redirect:/tasks";
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class TaskController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/edit-task/{id}")
+	@RequestMapping("/tasks/edit-task/{id}")
 	public ModelAndView editTaskForm(@PathVariable(name = "id") long id) {
 		ModelAndView mv = new ModelAndView("edit-task");
 		Task task = taskService.getSingleTask(id).orElseThrow(() -> new TaskNotFoundException(id));
@@ -98,14 +98,14 @@ public class TaskController {
 		return mv;
 	}
 
-	@PostMapping("/update-task")
+	@PostMapping("tasks/update-task")
 	public String updateTask(Task updatedTask) {
 		taskService.updateTask(updatedTask);
 		
-		return "redirect: /tasks";
+		return "redirect:/tasks";
 	}
 	
-	@RequestMapping("/delete-task/{id}")
+	@RequestMapping("tasks/delete-task/{id}")
 	public String deleteTask(@PathVariable(name = "id") long id) {
 		if (!taskService.doesTaskExist(id)) {
 			throw new TaskNotFoundException(id);
@@ -113,7 +113,7 @@ public class TaskController {
 	
 		taskService.deleteTask(id);
 		
-		return "redirect: /tasks";
+		return "redirect:/tasks";
 	}
 	
 }

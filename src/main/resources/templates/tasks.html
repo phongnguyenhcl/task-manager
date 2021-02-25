@@ -30,8 +30,8 @@
 					<td th:text="${task.email}">Email</td>
 					<td th:text="${task.severity}">Severity</td>
 					<td th:text="${task.owner.username != null}? ${task.owner.username}:'NA'">Owner</td>
-					<td><a th:href="@{'/edit-task/' + ${task.id}}"> Edit </a> <br>
-					<a th:href="@{'/delete-task/' + ${task.id}}"> Delete </a></td>
+					<td><a th:href="@{'/tasks/edit-task/' + ${task.id}}"> Edit </a> <br>
+					<a th:href="@{'/tasks/sdelete-task/' + ${task.id}}"> Delete </a></td>
 				</tr>
 			</tbody>
 		</table>
