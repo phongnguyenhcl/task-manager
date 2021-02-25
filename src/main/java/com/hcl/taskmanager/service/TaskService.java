@@ -14,7 +14,7 @@ import com.hcl.taskmanager.repository.TaskRepository;
 public class TaskService {
 
 	private TaskRepository taskRepo;
-
+	
 	public TaskService(TaskRepository taskRepo) {
 		this.taskRepo = taskRepo;
 	}
@@ -36,11 +36,17 @@ public class TaskService {
 	}
 
 	public void deleteTask(long id) {
+		setUserToNull(id);
 		taskRepo.deleteById(id);
 	}
 	
 	public boolean doesTaskExist(long id) {
 		return taskRepo.existsById(id);
+	}
+	
+	public void setUserToNull(long id) {
+		Task foundTask = taskRepo.findById(id).get();
+		foundTask.setOwner(null);
 	}
 
 }

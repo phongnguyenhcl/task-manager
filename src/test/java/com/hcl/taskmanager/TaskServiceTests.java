@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hcl.taskmanager.entity.Task;
+import com.hcl.taskmanager.entity.User;
 import com.hcl.taskmanager.service.TaskService;
 
 @SpringBootTest
@@ -20,6 +21,11 @@ public class TaskServiceTests {
 	
 	@Test
 	public void testUpdateTaskMethod() throws ParseException {
+		
+		User owner = new User();
+		owner.setUsername("teo");
+		owner.setPassword("teo");
+		
 		long updatedTaskId = 2;
 		
 		Task task = new Task();
@@ -30,11 +36,11 @@ public class TaskServiceTests {
 		task.setDescription("Task 1 Description");
 		task.setEmail("Task 10000 Email");
 		task.setSeverity("High Severity");
-		task.setOwner("Teo");
+		task.setOwner(owner);
 		
 		taskService.updateTask(task);
 		
-		Task foundTask = taskService.getSingleTask(updatedTaskId);
+		Task foundTask = taskService.getSingleTask(updatedTaskId).get();
 		
 		assertThat(foundTask).isEqualTo(task);
 	}

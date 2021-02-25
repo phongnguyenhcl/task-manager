@@ -46,7 +46,10 @@
 				</tr>
 				<tr>
 					<td>Owner:</td>
-					<td><input type="text" th:field="*{owner}" /></td>
+					<td><select th:field="*{owner}">
+							<option th:each="user : ${users}" th:value="${user.id}"
+								th:text="${user.username}"></option>
+					</select></td>
 				</tr>
 
 				<tr>

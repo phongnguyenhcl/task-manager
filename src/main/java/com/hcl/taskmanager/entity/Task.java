@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,9 +16,9 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.Data;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -45,6 +47,10 @@ public class Task {
 	String description;
 	String email;
 	String severity;
-	String owner;
+	
+	@ManyToOne
+    @JoinColumn(name = "owner_id")
+	@ToString.Exclude
+	User owner;
 
 }

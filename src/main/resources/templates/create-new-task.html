@@ -7,12 +7,11 @@
 	<div align="center">
 		<h1>Create a new task</h1>
 		<br>
-		<form th:action="@{save-task}" method="post"
-			th:object="${newTask}">
+		<form th:action="@{/tasks/save-task}" method="post" th:object="${newTask}">
 			<table border="0" cellpadding="10">
 				<tr>
 					<td>Task Name:</td>
-					<td><input type="text" th:field="*{taskName}"  value="Joshn"/></td>
+					<td><input type="text" th:field="*{taskName}" value="Joshn" /></td>
 				</tr>
 				<tr>
 					<td>Start Date:</td>
@@ -22,10 +21,11 @@
 					<td>End Date:</td>
 					<td><input type="date" th:field="*{endDate}" /></td>
 				</tr>
-				
+
 				<tr>
 					<td>Description:</td>
-					<td><textarea rows="4" cols="50" maxlength="255" th:field="*{description}"></textarea></td>
+					<td><textarea rows="4" cols="50" maxlength="255"
+							th:field="*{description}"></textarea></td>
 				</tr>
 
 				<tr>
@@ -44,7 +44,10 @@
 
 				<tr>
 					<td>Owner:</td>
-					<td><input type="text" th:field="*{owner}" /></td>
+					<td><select th:field="*{owner}">
+							<option th:each="user : ${users}" th:value="${user.id}"
+								th:text="${user.username}"></option>
+					</select></td>
 				</tr>
 
 				<tr>
